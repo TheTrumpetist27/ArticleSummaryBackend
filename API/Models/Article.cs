@@ -1,0 +1,30 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace API.Models
+{
+    public class Article
+    {
+        [Key]
+        public int Id { get; set; }
+        
+        [Required]
+        public string Title { get; set; } = string.Empty;
+
+        [Required]
+        public string Summary { get; set; } = string.Empty;
+
+        public int DomainId { get; set; }
+        public Domain Domain { get; set; } = null!;
+        
+        public int CreatedById { get; set; }
+        public User CreatedBy { get; set; } = null!;
+
+        public int? UpdatedById { get; set; }
+        public User? UpdatedBy { get; set; }
+
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
+
+        public List<Source> Sources { get; set; } = new();
+    }
+}
