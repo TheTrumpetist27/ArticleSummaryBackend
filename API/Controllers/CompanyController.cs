@@ -30,22 +30,29 @@ namespace API.Controllers
         public async Task<ActionResult<Company>> GetCompanyById(int id)
         {
             var company = await _companyService.GetCompanyById(id);
-            if (company == null) return NotFound("Company not found!");
-            return Ok(company);
+            if (company == null)
+            {
+                return NotFound("Company not found!");
+            }
+            else
+            {
+                return Ok(ConvertCompanyToDTO(company));
+            }
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateCompany([FromBody] Company company)
+        public async Task<ActionResult> CreateCompany([FromBody] CompanyDTO companyDTO)
         {
-            int rowsChanged = await _companyService.CreateCompany(company);
+            int rowsChanged = await _companyService.CreateCompany(ConvertDTOToCompany(companyDTO));
             if (rowsChanged > 0) return Ok(new { message = "Company Created", rowsChanged });
 
             return BadRequest("Company not created!");
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateCompany(int id, [FromBody] Company company)
+        public async Task<ActionResult> UpdateCompany(int id, [FromBody] CompanyDTO companyDTO)
         {
+            var company = ConvertDTOToCompany(companyDTO);
             if (id != company.Id) return BadRequest("Company Id mismatch!");
 
             int rowsChanged = await _companyService.UpdateCompany(company);
