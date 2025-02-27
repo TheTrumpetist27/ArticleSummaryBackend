@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace API.Models
+namespace API.DTOModels
 {
-    public class Domain
+    public class DomainDTO
     {
         [Key]
         public int Id { get; set; }
@@ -12,10 +12,10 @@ namespace API.Models
         public string Name { get; set; } = string.Empty;
 
         public int CompanyId { get; set; }
-        public Company Company { get; set; } = null!;
+        public CompanyDTO Company { get; set; } = null!;
 
-        public List<UserDomainRole> UserDomainRoles { get; set; } = new();
-        public List<Article> Articles { get; set; } = new();
+        public List<UserDomainRoleDTO> UserDomainRoles { get; set; } = new();
+        public List<ArticleDTO> Articles { get; set; } = new();
 
     }
 }

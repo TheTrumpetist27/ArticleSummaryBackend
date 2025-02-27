@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace API.Models
+namespace API.DTOModels
 {
-    public class User
+    public class UserDTO
     {
         [Key]
         public int Id { get; set; }
@@ -20,9 +20,9 @@ namespace API.Models
         public string PasswordHash { get; set; } = string.Empty;
 
         public int? CompanyId { get; set; }
-        public Company? Company { get; set; }
+        public CompanyDTO? Company { get; set; }
         public Role Role { get; set; } = Role.Employee;
-        public List<UserDomainRole> UserDomainRoles { get; set; } = new();
+        public List<UserDomainRoleDTO> UserDomainRoles { get; set; } = new();
     }
 
     public enum Role

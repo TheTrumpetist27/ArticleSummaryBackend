@@ -1,5 +1,5 @@
-﻿using API.Data;
-using API.Models;
+﻿using API.DTOModels;
+using API.Temp.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;

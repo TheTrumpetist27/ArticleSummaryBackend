@@ -1,12 +1,18 @@
+using DAL;
+using DAL.Repositories;
+using Core.Services;
+using Core.Repositories;
 using Microsoft.EntityFrameworkCore;
-using API.Data;
-using API.Services.CompanyService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<DataContext>();
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseInMemoryDatabase("TestDB"));
+
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

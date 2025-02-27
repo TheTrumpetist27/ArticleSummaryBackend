@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace API.Models
+namespace API.DTOModels
 {
-    public class Company
+    public class CompanyDTO
     {
         [Key]
         public int Id { get; set; }
@@ -11,7 +11,7 @@ namespace API.Models
         public string Name { get; set; } = string.Empty;
 
         public int CEOId { get; set; }
-        public User CEO { get; set; } = null!;
-        public List<Domain> Domains { get; set; } = new();
+        public UserDTO CEO { get; set; } = null!;
+        public List<DomainDTO> Domains { get; set; } = new();
     }
 }

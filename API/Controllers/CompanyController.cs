@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using API.Models;
-using API.Services.CompanyService;
+using Core.Services;
+using Core.Models;
+using API.DTOModels;
+using static API.Helper.Functions;
 
 namespace API.Controllers
 {
@@ -19,7 +21,9 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<Company>>> GetAllCompanies()
         {
             var companies = await _companyService.GetAllCompanies();
-            return Ok(companies);
+
+            var companiesDTO = companies.Select(company => ConvertCompanyToDTO(company));
+            return Ok(companiesDTO);
         }
 
         [HttpGet("{id}")]
