@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Core.Services;
 using Core.Models;
 using API.DTOModels;
-using static API.Helper.Functions;
+using static API.Helper.DTOTranslator;
 
 namespace API.Controllers
 {

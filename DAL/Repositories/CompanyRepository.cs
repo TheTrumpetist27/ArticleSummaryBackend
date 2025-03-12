@@ -1,5 +1,7 @@
 ﻿using Core.Models;
 using Core.Repositories;
+using DAL.Entities;
+using static DAL.Helper.CompanyEntityTranslator;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
@@ -13,18 +15,19 @@ namespace DAL.Repositories
         }
         public async Task<IEnumerable<Company>> GetAllCompanies()
         {
+            List<CompanyEntity> companies = new();
             return await _context.Companies.ToListAsync();
         }
-        public async Task<Company?> GetCompanyById(int id)
+        public async Task<CompanyEntity?> GetCompanyById(int id)
         {
             return await _context.Companies.FindAsync(id);
         }
-        public async Task<int> CreateCompany(Company company)
+        public async Task<int> CreateCompany(CompanyEntity company)
         {
             _context.Companies.Add(company);
             return await _context.SaveChangesAsync();
         }
-        public async Task<int> UpdateCompany(Company company)
+        public async Task<int> UpdateCompany(CompanyEntity company)
         {
             _context.Companies.Update(company);
             return await _context.SaveChangesAsync();

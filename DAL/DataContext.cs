@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Core.Models;
+using DAL.Entities;
 
 namespace DAL
 {
@@ -9,7 +9,7 @@ namespace DAL
         {
         }
 
-        public DbSet<Company> Companies { get; set; }
+        public DbSet<CompanyEntity> Companies { get; set; }
         //public DbSet<User> Users { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)

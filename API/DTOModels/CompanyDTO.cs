@@ -11,7 +11,5 @@ namespace API.DTOModels
         public string Name { get; set; } = string.Empty;
 
         public int CEOId { get; set; }
-        public UserDTO CEO { get; set; } = null!;
-        public List<DomainDTO> Domains { get; set; } = new();
     }
 }

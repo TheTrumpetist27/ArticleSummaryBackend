@@ -1,9 +1,9 @@
-﻿using Core.Models;
+﻿using DAL.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace Core.Models
+namespace DAL.Entities
 {
-    public class Company
+    public class CompanyEntity
     {
         [Key]
         public int Id { get; set; }
@@ -12,7 +12,7 @@ namespace Core.Models
         public string Name { get; set; } = string.Empty;
 
         public int CEOId { get; set; }
-        public User CEO { get; set; } = null!;
-        public List<Domain> Domains { get; set; } = new();
+        public UserEntity CEO { get; set; } = null!;
+        public List<DomainEntity> Domains { get; set; } = new();
     }
 }
