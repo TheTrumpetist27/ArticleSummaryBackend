@@ -12,7 +12,7 @@ namespace Core.Models
         public string Name { get; set; } = string.Empty;
 
         public int CEOId { get; set; }
-        public User CEO { get; set; } = null!;
-        public List<Domain> Domains { get; set; } = new();
+        //public User CEO { get; set; } = null!;
+        //public List<Domain>? Domains { get; set; } = new();
     }
 }

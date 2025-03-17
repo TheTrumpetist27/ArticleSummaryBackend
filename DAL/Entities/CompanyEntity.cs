@@ -10,9 +10,8 @@ namespace DAL.Entities
         [Required]
         [MaxLength(200)]
         public string Name { get; set; } = string.Empty;
-
         public int CEOId { get; set; }
-        public UserEntity CEO { get; set; } = null!;
-        public List<DomainEntity> Domains { get; set; } = new();
+        //public UserEntity CEO { get; set; } = null!;
+        //public List<DomainEntity> Domains { get; set; } = new();
     }
 }

@@ -11,9 +11,9 @@ namespace DAL.Helper
             {
                 Id = companyEntity.Id,
                 Name = companyEntity.Name,
-                CEOId = companyEntity.CEOId,
-                CEO = UserEntityTranslator.UserFromEntity(companyEntity.CEO),
-                Domains = companyEntity.Domains.Select(DomainEntityTranslator.DomainFromEntity).ToList()
+                CEOId = companyEntity.CEOId
+                //CEO = UserEntityTranslator.UserFromEntity(companyEntity.CEO),
+                //Domains = companyEntity.Domains.Select(DomainEntityTranslator.DomainFromEntity).ToList()
             };
         }
 

@@ -15,8 +15,12 @@ namespace DAL.Repositories
         }
         public async Task<IEnumerable<Company>> GetAllCompanies()
         {
-            List<CompanyEntity> companies = new();
-            return await _context.Companies.ToListAsync();
+            var companies = new List<Company>();
+            foreach (var company in await _context.Companies.ToListAsync())
+            {
+                companies.Add(CompanyFromEntity(company));
+            }
+            return companies;
         }
         public async Task<CompanyEntity?> GetCompanyById(int id)
         {

@@ -23,7 +23,7 @@ namespace DAL.Entities
         public int? CompanyId { get; set; }
         public CompanyEntity? Company { get; set; }
         public Role Role { get; set; } = Role.Employee;
-        public List<UserDomainRole> UserDomainRoles { get; set; } = new();
+        public List<UserDomainRoleEntity> UserDomainRoles { get; set; } = new();
     }
 
     public enum Role
