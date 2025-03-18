@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿global using Microsoft.EntityFrameworkCore;
 using DAL.Entities;
 
 namespace DAL
 {
     public class DataContext : DbContext
+
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
