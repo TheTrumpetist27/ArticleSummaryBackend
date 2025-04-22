@@ -53,7 +53,7 @@ namespace ArticleSummaryBackend.DAL.Tests
                 await context.SaveChangesAsync();
             }
             
-            CompanyEntity? result;
+            Company result;
             using (var context = new DataContext(_options))
             {
                 var repository = new CompanyRepository(context);
