@@ -71,7 +71,7 @@ namespace ArticleSummaryBackend.DAL.Tests
         {
             var _options = CreateNewContextOptions();
             // Arrange
-            var newCompany = new CompanyEntity { Id = 1, Name = "Test Company 1", CEOId = 1 };
+            var newCompany = new Company { Id = 1, Name = "Test Company 1", CEOId = 1 };
             using (var context = new DataContext(_options))
             {
                 var repository = new CompanyRepository(context);
@@ -92,7 +92,7 @@ namespace ArticleSummaryBackend.DAL.Tests
         {
             var _options = CreateNewContextOptions();
             // Arrange
-            var updatedCompany = new CompanyEntity { Id = 1, Name = "Updated Company", CEOId = 1 };
+            var updatedCompany = new Company { Id = 1, Name = "Updated Company", CEOId = 1 };
             using (var context = new DataContext(_options))
             {
                 context.Companies.Add(new CompanyEntity { Id = 1, Name = "Test Company 1", CEOId = 1 });
