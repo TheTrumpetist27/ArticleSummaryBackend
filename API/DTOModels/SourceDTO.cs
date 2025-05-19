@@ -11,6 +11,6 @@ namespace API.DTOModels
         public string Content { get; set; } = string.Empty;
 
         public int ArticleId { get; set; }
-        public ArticleDTO Article { get; set; } = null!;
+        //public ArticleDTO Article { get; set; } = null!;
     }
 }
