@@ -2,6 +2,6 @@
 {
     public class SummaryResponse
     {
-        public string Summary { get; set; }
+        public string Summary { get; set; } = string.Empty;
     }
 }

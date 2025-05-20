@@ -11,14 +11,16 @@ namespace DAL
         }
 
         public DbSet<CompanyEntity> Companies { get; set; }
-        //public DbSet<User> Users { get; set; }
+        public DbSet<ArticleEntity> Articles => Set<ArticleEntity>();
+        public DbSet<SourceEntity> Sources => Set<SourceEntity>();
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Company>()
-        //        .HasOne(c => c.CEO)
-        //        .WithOne(u => u.Company)
-        //        .HasForeignKey<Company>(c => c.CEOId);
-        //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ArticleEntity>()
+                .HasOne(a => a.Source)
+                .WithOne(s => s.Article)
+                .HasForeignKey<SourceEntity>(s => s.ArticleId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

@@ -7,9 +7,9 @@ namespace Core.Models
     {
         [Key]
         public int Id { get; set; }
-        
-       
-        //public string Title { get; set; } = string.Empty;
+
+        [Required]
+        public string Title { get; set; } = string.Empty;
 
         [Required]
         public string Summary { get; set; } = string.Empty;
@@ -23,9 +23,10 @@ namespace Core.Models
         //public int? UpdatedById { get; set; }
         //public User? UpdatedBy { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdatedAt { get; set; }
+        //public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        //public DateTime? UpdatedAt { get; set; }
 
+        //public int SourceId { get; set; }
         public Source Source { get; set; } = null!;
     }
 }
