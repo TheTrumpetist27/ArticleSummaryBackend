@@ -14,7 +14,7 @@ namespace Core.Services
         public async Task<string> SummarizeTextAsync(string content)
         {
             var request = new { text = content };
-            var response = await _httpClient.PostAsJsonAsync("http://localhost:8000/summarize", request);
+            var response = await _httpClient.PostAsJsonAsync("http://127.0.0.1:8000/summarize", request);
 
             response.EnsureSuccessStatusCode();
 
