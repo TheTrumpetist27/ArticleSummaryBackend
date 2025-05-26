@@ -26,6 +26,7 @@ builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
 builder.Services.AddScoped<IArticleService, ArticleService>();
 builder.Services.AddScoped<ITextSummaryService, TextSummaryService>();
+builder.Services.AddHttpClient<ITextSummaryService, TextSummaryService>();
 
 
 builder.Services.AddControllers();
