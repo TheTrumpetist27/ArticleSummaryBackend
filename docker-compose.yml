@@ -1,0 +1,29 @@
+services:
+  api:
+    image: ${DOCKER_REGISTRY-}api
+    build:
+      context: .
+      dockerfile: API/Dockerfile
+    ports:
+        - "8090:8080" 
+    depends_on:
+        - db   
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_URLS=http://+:8080
+        - ConnectionStrings__DefaultConnection=Server=db;port=3306;Database=articlesummary;user=article;password=summary;
+  db:
+    image: mysql:8.1
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: secret
+        MYSQL_DATABASE: articlesummary
+        MYSQL_USER: article
+        MYSQL_PASSWORD: summary
+    ports:
+        - "3306:3306"
+    volumes:
+        - dbdata:/var/lib/mysql
+
+volumes: 
+  dbdata:
