@@ -27,5 +27,26 @@ namespace API.Helper
                 CEOId = companyDTO.CEOId
             };
         }
+
+        // Article
+        public static ArticleResponseDTO ToArticleResponseDTO(Article article)
+        {
+            return new ArticleResponseDTO
+            {
+                Id = article.Id,
+                Title = article.Title,
+                Summary = article.Summary,
+                Content = article.Source.Content
+            };
+        }
+
+        public static Article ToArticleModel(CreateArticleRequestDTO createArticleRequestDTO)
+        {
+            return new Article
+            {
+                Title = createArticleRequestDTO.Title,
+                Source = new Source { Content = createArticleRequestDTO.Content }
+            };
+        }
     }
 }

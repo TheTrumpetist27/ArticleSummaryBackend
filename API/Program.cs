@@ -3,6 +3,8 @@ using DAL.Repositories;
 using Core.Services;
 using Core.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,12 +19,18 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
-
+//ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
 builder.Services.AddDbContext<DataContext>(options =>
-    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    new MySqlServerVersion(new Version(8,1,0))
+    ));
 
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
+builder.Services.AddScoped<IArticleRepository, ArticleRepository>();
+builder.Services.AddScoped<IArticleService, ArticleService>();
+builder.Services.AddScoped<ITextSummaryService, TextSummaryService>();
+builder.Services.AddHttpClient<ITextSummaryService, TextSummaryService>();
 
 
 builder.Services.AddControllers();
@@ -47,4 +55,31 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+var retries = 5;
+var delay = TimeSpan.FromSeconds(3);
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+    while (retries > 0)
+    {
+        try
+        {
+            dbContext.Database.Migrate();
+            break;
+        }
+        catch (Exception ex)
+        {
+            retries--;
+            Console.WriteLine($"Database migration failed: {ex.Message}. Retries left: {retries}");
+            Thread.Sleep(delay);
+        }
+    }
+
+    if (retries == 0)
+    {
+        throw new Exception("Database migration failed after multiple attempts.");
+    }
+}
+
+    app.Run();

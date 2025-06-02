@@ -22,26 +22,40 @@ namespace DAL.Repositories
             }
             return companies;
         }
-        public async Task<CompanyEntity?> GetCompanyById(int id)
+        public async Task<Company> GetCompanyById(int id)
         {
-            return await _context.Companies.FindAsync(id);
+            var company = await _context.Companies.FindAsync(id);
+            if (company == null)
+            {
+                return null;
+            }
+            else
+            {
+                return CompanyFromEntity(company);
+            }
         }
-        public async Task<int> CreateCompany(CompanyEntity company)
+        public async Task<int> CreateCompany(Company company)
         {
-            _context.Companies.Add(company);
+            _context.Companies.Add(CompanyToEntity(company));
             return await _context.SaveChangesAsync();
         }
-        public async Task<int> UpdateCompany(CompanyEntity company)
+        public async Task<int> UpdateCompany(Company company)
         {
-            _context.Companies.Update(company);
+            _context.Companies.Update(CompanyToEntity(company));
             return await _context.SaveChangesAsync();
         }
         public async Task<int> DeleteCompany(int id)
         {
             var company = await _context.Companies.FindAsync(id);
-            if (company == null) return 0;
-            _context.Companies.Remove(company);
-            return await _context.SaveChangesAsync();
+            if (company == null)
+            {
+                return 0;
+            }
+            else
+            {
+                _context.Companies.Remove(company);
+                return await _context.SaveChangesAsync();
+            }
         }
     }
 }
