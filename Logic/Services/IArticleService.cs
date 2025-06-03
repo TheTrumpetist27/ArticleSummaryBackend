@@ -8,6 +8,6 @@ namespace Core.Services
         Task<IEnumerable<Article>> GetAllArticles();
         Task<Article?> GetArticleById(int id);
         //Task<int> UpdateArticle(Article article);
-        //Task<int> DeleteArticle(int id);
+        Task<int> DeleteArticle(int id);
     }
 }
