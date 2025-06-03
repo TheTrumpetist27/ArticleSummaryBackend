@@ -43,5 +43,16 @@ namespace DAL.Repositories
                 .FirstOrDefaultAsync(a => a.Id == id);
             return articleEntity != null ? ToModel(articleEntity) : null;
         }
+
+        public async Task<int> DeleteArticle(int id)
+        {
+            var articleEntity = await _context.Articles.FindAsync(id);
+            if (articleEntity == null)
+            {
+                return 0; // Artikel niet gevonden
+            }
+            _context.Articles.Remove(articleEntity);
+            return await _context.SaveChangesAsync();
+        }
     }
 }

@@ -42,5 +42,16 @@ namespace API.Controllers
             }
             return Ok(ToArticleResponseDTO(article));
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteArticle(int id)
+        {
+            var result = await _articleService.DeleteArticle(id);
+            if (result == 0)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
     }
 }

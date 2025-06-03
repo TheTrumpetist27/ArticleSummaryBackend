@@ -29,13 +29,13 @@ namespace Core.Services
         {
             return await _repository.GetArticleById(id);
         }
+        public async Task<int> DeleteArticle(int id)
+        {
+            return await _repository.DeleteArticle(id);
+        }
         //public async Task<int> UpdateArticle(Article article)
         //{
         //    return await _repository.UpdateArticle(article);
-        //}
-        //public async Task<int> DeleteArticle(int id)
-        //{
-        //    return await _repository.DeleteArticle(id);
         //}
     }
 }
