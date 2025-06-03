@@ -35,5 +35,13 @@ namespace DAL.Repositories
                 .Select(a => ToModel(a))
                 .ToListAsync();
         }
+
+        public async Task<Article?> GetArticleById(int id)
+        {
+            var articleEntity = await _context.Articles
+                .Include(a => a.Source)
+                .FirstOrDefaultAsync(a => a.Id == id);
+            return articleEntity != null ? ToModel(articleEntity) : null;
+        }
     }
 }
