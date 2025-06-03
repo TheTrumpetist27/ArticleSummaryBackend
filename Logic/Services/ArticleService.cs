@@ -20,14 +20,10 @@ namespace Core.Services
             return await _repository.CreateArticleAsync(article);
         }
 
-        //public async Task<int> CreateArticle(Article article)
-        //{
-        //    return await _repository.CreateArticle(article);
-        //}
-        //public async Task<IEnumerable<Article>> GetAllArticles()
-        //{
-        //    return await _repository.GetAllArticles();
-        //}
+        public async Task<IEnumerable<Article>> GetAllArticles()
+        {
+            return await _repository.GetAllArticles();
+        }
         //public async Task<Article?> GetArticleById(int id)
         //{
         //    return await _repository.GetArticleById(id);

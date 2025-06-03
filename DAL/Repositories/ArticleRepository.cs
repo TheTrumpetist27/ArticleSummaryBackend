@@ -27,5 +27,13 @@ namespace DAL.Repositories
 
             return ToModel(articleEntity);
         }
+
+        public async Task<IEnumerable<Article>> GetAllArticles()
+        {
+            return await _context.Articles
+                .Include(a => a.Source)
+                .Select(a => ToModel(a))
+                .ToListAsync();
+        }
     }
 }
