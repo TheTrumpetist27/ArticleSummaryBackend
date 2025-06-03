@@ -23,5 +23,13 @@ namespace API.Controllers
             var createdArticle = await _articleService.CreateArticleAsync(article);
             return Ok(ToArticleResponseDTO(createdArticle));
         }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ArticleResponseDTO>>> GetAllArticles()
+        {
+            var articles = await _articleService.GetAllArticles();
+            var articleDTOs = articles.Select(ToArticleResponseDTO).ToList();
+            return Ok(articleDTOs);
+        }
     }
 }
