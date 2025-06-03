@@ -31,5 +31,16 @@ namespace API.Controllers
             var articleDTOs = articles.Select(ToArticleResponseDTO).ToList();
             return Ok(articleDTOs);
         }
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<ArticleResponseDTO>> GetArticleById(int id)
+        {
+            var article = await _articleService.GetArticleById(id);
+            if (article == null)
+            {
+                return NotFound();
+            }
+            return Ok(ToArticleResponseDTO(article));
+        }
     }
 }

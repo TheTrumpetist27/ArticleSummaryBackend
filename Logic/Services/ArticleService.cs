@@ -24,10 +24,11 @@ namespace Core.Services
         {
             return await _repository.GetAllArticles();
         }
-        //public async Task<Article?> GetArticleById(int id)
-        //{
-        //    return await _repository.GetArticleById(id);
-        //}
+
+        public async Task<Article?> GetArticleById(int id)
+        {
+            return await _repository.GetArticleById(id);
+        }
         //public async Task<int> UpdateArticle(Article article)
         //{
         //    return await _repository.UpdateArticle(article);
