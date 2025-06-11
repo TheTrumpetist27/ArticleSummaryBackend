@@ -25,4 +25,20 @@ jobs:
     - name: Build
       run: dotnet build ./ArticleSummaryBackend.sln --no-restore
     - name: Test
-      run: dotnet test ./ArticleSummaryBackend.sln --no-build --verbosity normal
+      run: dotnet test ./ArticleSummaryBackend.sln --no-build --collect:"XPlat Code Coverage"
+    - name: Install report generator
+      run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+    - name: Generate coverage report
+      run: |
+        reportgenerator -reports:**/coverage.cobertura.xml \
+                    -targetdir:coverage-report \
+                    -reporttypes:Cobertura
+
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v2
+      with:
+        organization: 'thetrumpetist27'
+        projectKey: 'TheTrumpetist27_ArticleSummaryBackend'
+        scannerMode: CLI
+        token: ${{ secrets.SONAR_TOKEN }}
