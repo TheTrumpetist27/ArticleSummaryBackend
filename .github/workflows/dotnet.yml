@@ -31,7 +31,7 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-        dotnet-sonarscanner begin /k:"TheTrumpetist27_ArticleSummaryBackend" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.vscoveragexml.reportsPaths="coverage/coverage.xml"
+        dotnet-sonarscanner begin /k:"TheTrumpetist27_ArticleSummaryBackend" /o:"thetrumpetist27" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.vscoveragexml.reportsPaths="coverage/coverage.xml"
 
     - name: Restore dependencies
       run: dotnet restore ./ArticleSummaryBackend.sln
