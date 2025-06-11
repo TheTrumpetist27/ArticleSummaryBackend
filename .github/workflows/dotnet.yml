@@ -24,8 +24,8 @@ jobs:
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
 
-    - name: Install ReportGenerator
-      run: dotnet tool install --global dotnet-reportgenerator-globaltool
+    - name: Install dotnet-coverage
+      run: dotnet tool install --global dotnet-coverage
 
     - name: Begin SonarCloud Analysis
       env:
@@ -38,21 +38,13 @@ jobs:
 
     - name: Build
       run: dotnet build ./ArticleSummaryBackend.sln --no-restore
-
+    
     - name: Test with coverage
-      run: dotnet test ./ArticleSummaryBackend.sln --no-build --collect:"XPlat Code Coverage"
-
-    - name: Check coverage output
       run: |
-        echo "Bestanden in TestResults:"
-        find . -type d -name TestResults
-        find . -type f -name coverage.cobertura.xml
-        echo "Eerste 20 regels:"
-        head -n 20 $(find . -type f -name coverage.cobertura.xml)
-
-    - name: Convert coverage to Cobertura
-      run: |
-        reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage -reporttypes:Cobertura
+        dotnet-coverage collect \
+          --output ./coverage/coverage.cobertura.xml \
+          --output-format cobertura \
+          -- dotnet test ./ArticleSummaryBackend.sln --no-build
 
     - name: End SonarCloud Analysis
       env:
