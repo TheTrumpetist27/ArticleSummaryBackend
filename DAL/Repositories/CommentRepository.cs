@@ -29,5 +29,17 @@ namespace DAL.Repositories
                 .Select(c => CommentEntityTranslator.ToModel(c))
                 .ToListAsync();
         }
-    }
+
+        //Delete comment
+        public async Task<bool> DeleteCommentAsync(int commentId)
+        {
+            var commentEntity = await _context.Comments.FindAsync(commentId);
+            if (commentEntity == null)
+            {
+                return false; // Comment not found
+            }
+            _context.Comments.Remove(commentEntity);
+            await _context.SaveChangesAsync();
+            return true; // Comment deleted successfully
+        }
 }

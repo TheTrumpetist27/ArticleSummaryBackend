@@ -31,5 +31,16 @@ namespace API.Controllers
             return Ok(commentDTOs);
 
         }
+
+        [HttpDelete("{commentId:int}")]
+        public async Task<IActionResult> DeleteComment(int commentId)
+        {
+            var result = await _commentService.DeleteCommentAsync(commentId);
+            if (result)
+            {
+                return NoContent(); // 204 No Content
+            }
+            return NotFound(); // 404 Not Found if the comment does not exist
+        }
     }
 }
