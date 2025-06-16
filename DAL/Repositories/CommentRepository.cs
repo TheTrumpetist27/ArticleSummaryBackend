@@ -42,4 +42,5 @@ namespace DAL.Repositories
             await _context.SaveChangesAsync();
             return true; // Comment deleted successfully
         }
+    }
 }
