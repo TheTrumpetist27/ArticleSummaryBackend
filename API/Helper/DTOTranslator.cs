@@ -65,7 +65,7 @@ namespace API.Helper
         {
             return new Comment
             {
-                Content = createCommentDTO.Text,
+                Content = createCommentDTO.Content,
                 ArticleId = createCommentDTO.ArticleId,
                 CreatedAt = DateTime.UtcNow
             };
