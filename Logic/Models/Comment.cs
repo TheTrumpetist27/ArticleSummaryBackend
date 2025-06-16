@@ -10,6 +10,5 @@ namespace Core.Models
         public DateTime CreatedAt { get; set; }
 
         public int ArticleId { get; set; }
-        public Article Article { get; set; } = null!;
     }
 }

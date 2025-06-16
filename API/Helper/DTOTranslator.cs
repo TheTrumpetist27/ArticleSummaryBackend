@@ -48,5 +48,26 @@ namespace API.Helper
                 Source = new Source { Content = createArticleRequestDTO.Content }
             };
         }
+
+        // Comments
+        public static CommentDTO ToCommentDTO(Comment comment)
+        {
+            return new CommentDTO
+            {
+                Id = comment.Id,
+                Content = comment.Content,
+                CreatedAt = comment.CreatedAt,
+                ArticleId = comment.ArticleId
+            };
+        }
+
+        public static Comment ToCommentModel(CreateCommentDTO createCommentDTO)
+        {
+            return new Comment
+            {
+                Content = createCommentDTO.Text,
+                ArticleId = createCommentDTO.ArticleId
+            };
+        }
     }
 }
