@@ -15,5 +15,7 @@ namespace DAL.Entities
         public string Summary { get; set; } = string.Empty;
 
         public SourceEntity Source { get; set; } = null!;
+
+        public List<CommentEntity> Comments { get; set; } = new();
     }
 }

@@ -13,6 +13,7 @@ namespace DAL
         public DbSet<CompanyEntity> Companies { get; set; }
         public DbSet<ArticleEntity> Articles => Set<ArticleEntity>();
         public DbSet<SourceEntity> Sources => Set<SourceEntity>();
+        public DbSet<CommentEntity> Comments => Set<CommentEntity>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,6 +21,11 @@ namespace DAL
                 .HasOne(a => a.Source)
                 .WithOne(s => s.Article)
                 .HasForeignKey<SourceEntity>(s => s.ArticleId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<CommentEntity>()
+                .HasOne(c => c.Article)
+                .WithMany(a => a.Comments)
+                .HasForeignKey(c => c.ArticleId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

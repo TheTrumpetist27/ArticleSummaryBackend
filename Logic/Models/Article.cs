@@ -28,5 +28,7 @@ namespace Core.Models
 
         //public int SourceId { get; set; }
         public Source Source { get; set; } = null!;
+        public List<Comment> Comments { get; set; } = new();
+
     }
 }
