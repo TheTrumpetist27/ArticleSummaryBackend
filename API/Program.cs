@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using API.Hubs;
+using API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,7 @@ builder.Services.AddScoped<ITextSummaryService, TextSummaryService>();
 builder.Services.AddHttpClient<ITextSummaryService, TextSummaryService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<ICommentBroadcastService, CommentBroadcastService>();
 
 
 builder.Services.AddControllers();

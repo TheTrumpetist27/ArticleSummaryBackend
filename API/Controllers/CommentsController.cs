@@ -3,7 +3,6 @@ using Core.Services;
 using API.DTOModels;
 using static API.Helper.DTOTranslator;
 using API.Hubs;
-using Microsoft.AspNetCore.SignalR;
 
 namespace API.Controllers
 {
@@ -12,11 +11,9 @@ namespace API.Controllers
     public class CommentsController : Controller
     {
         private readonly ICommentService _commentService;
-        private readonly IHubContext<CommentHub> _hubContext;
-        public CommentsController(ICommentService commentService, IHubContext<CommentHub> hubContext)
+        public CommentsController(ICommentService commentService)
         {
             _commentService = commentService;
-            _hubContext = hubContext;
         }
 
         [HttpPost]
@@ -25,10 +22,6 @@ namespace API.Controllers
             var comment = ToCommentModel(createCommentDTO);
             var createdComment = await _commentService.AddCommentAsync(comment);
             var createdDTO = ToCommentDTO(createdComment);
-
-            // SignalR
-            await _hubContext.Clients.All.SendAsync("ReceiveComment", createdDTO);
-
             return Ok(createdDTO);
         }
 
