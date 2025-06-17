@@ -6,6 +6,5 @@
         public User User { get; set; } = null!;
         public int DomainId { get; set; }
         public Domain Domain { get; set; } = null!;
-        public Role Role { get; set; }
     }
 }

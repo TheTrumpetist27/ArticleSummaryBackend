@@ -14,6 +14,7 @@ namespace DAL
         public DbSet<ArticleEntity> Articles => Set<ArticleEntity>();
         public DbSet<SourceEntity> Sources => Set<SourceEntity>();
         public DbSet<CommentEntity> Comments => Set<CommentEntity>();
+        public DbSet<UserEntity> Users => Set<UserEntity>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

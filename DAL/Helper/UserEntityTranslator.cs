@@ -5,13 +5,23 @@ namespace DAL.Helper
 {
     internal static class UserEntityTranslator
     {
-        public static User UserFromEntity(UserEntity userEntity)
+        public static User ToUser(UserEntity userEntity)
         {
             return new User
             {
                 Id = userEntity.Id,
-                Name = userEntity.Name,
-                Email = userEntity.Email
+                Username = userEntity.Username,
+                PasswordHash = userEntity.PasswordHash
+            };
+        }
+
+        public static UserEntity ToEntity(User user)
+        {
+            return new UserEntity
+            {
+                Id = user.Id,
+                Username = user.Username,
+                PasswordHash = user.PasswordHash
             };
         }
     }
