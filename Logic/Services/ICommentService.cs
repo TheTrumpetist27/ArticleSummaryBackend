@@ -6,6 +6,6 @@ namespace Core.Services
     {
         Task<Comment> AddCommentAsync(Comment comment);
         Task<List<Comment>> GetCommentsForArticleAsync(int articleId);
-        Task<bool> DeleteCommentAsync(int commentId); // Method to delete a comment
+        Task<bool> DeleteCommentAsync(int commentId);
     }
 }

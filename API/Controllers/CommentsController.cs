@@ -38,9 +38,9 @@ namespace API.Controllers
             var result = await _commentService.DeleteCommentAsync(commentId);
             if (result)
             {
-                return NoContent(); // 204 No Content
+                return NoContent(); // 204
             }
-            return NotFound(); // 404 Not Found if the comment does not exist
+            return NotFound(); // 404
         }
     }
 }

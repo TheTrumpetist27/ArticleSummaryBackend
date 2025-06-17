@@ -19,7 +19,6 @@ namespace Core.Services
             return await _repository.GetCommentsForArticleAsync(articleId);
         }
 
-        // Method to delete a comment
         public async Task<bool> DeleteCommentAsync(int commentId)
         {
             return await _repository.DeleteCommentAsync(commentId);
