@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Core.Services;
+using API.DTOModels;
 
 namespace API.Controllers
 {
@@ -15,11 +16,11 @@ namespace API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(string username, string password)
+        public async Task<IActionResult> Register([FromBody] UserCredentialsDTO userCredentialsDTO)
         {
             try
             {
-                await _authService.RegisterAsync(username, password);
+                await _authService.RegisterAsync(userCredentialsDTO.Username, userCredentialsDTO.Password);
                 return Ok("Gebruiker geregistreerd");
             }
             catch (Exception ex)
@@ -29,11 +30,11 @@ namespace API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(string username, string password)
+        public async Task<IActionResult> Login([FromBody] UserCredentialsDTO userCredentialsDTO)
         {
             try
             {
-                var token = await _authService.LoginAsync(username, password);
+                var token = await _authService.LoginAsync(userCredentialsDTO.Username, userCredentialsDTO.Password);
                 return Ok(new { token });
             }
             catch (Exception ex)
