@@ -3,6 +3,7 @@ using Core.Services;
 using API.DTOModels;
 using static API.Helper.DTOTranslator;
 using API.Hubs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -16,6 +17,7 @@ namespace API.Controllers
             _commentService = commentService;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<CommentDTO>> AddComment([FromBody] CreateCommentDTO createCommentDTO)
         {
@@ -34,6 +36,7 @@ namespace API.Controllers
 
         }
 
+        [Authorize]
         [HttpDelete("{commentId:int}")]
         public async Task<IActionResult> DeleteComment(int commentId)
         {

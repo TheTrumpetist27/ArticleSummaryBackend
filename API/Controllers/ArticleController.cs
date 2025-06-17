@@ -3,6 +3,7 @@ using Core.Services;
 using Core.Models;
 using API.DTOModels;
 using static API.Helper.DTOTranslator;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -16,6 +17,7 @@ namespace API.Controllers
             _articleService = articleService;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<ArticleResponseDTO>> CreateArticle([FromBody] CreateArticleRequestDTO createArticleRequestDTO)
         {
@@ -43,6 +45,7 @@ namespace API.Controllers
             return Ok(ToArticleResponseDTO(article));
         }
 
+        [Authorize]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteArticle(int id)
         {

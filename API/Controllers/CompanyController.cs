@@ -4,6 +4,7 @@ using Core.Services;
 using Core.Models;
 using API.DTOModels;
 using static API.Helper.DTOTranslator;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -40,6 +41,7 @@ namespace API.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Company>> CreateCompany([FromBody] CompanyDTO companyDTO)
         {
@@ -55,6 +57,7 @@ namespace API.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<ActionResult<Company>> UpdateCompany(int id, [FromBody] CompanyDTO companyDTO)
         {
@@ -72,6 +75,7 @@ namespace API.Controllers
             }
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteCompany(int id)
         {
