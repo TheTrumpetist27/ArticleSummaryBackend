@@ -41,7 +41,8 @@ jobs:
     
     - name: Test with coverage
       run: |
-        dotnet-coverage collect "dotnet test ./ArticleSummaryBackend.sln --no-build" -f xml -o "coverage.xml"
+        mkdir -p coverage
+        dotnet-coverage collect "dotnet test ./ArticleSummaryBackend.sln --no-build" -f xml -o "coverage/coverage.xml"
 
     - name: End SonarCloud Analysis
       env:
