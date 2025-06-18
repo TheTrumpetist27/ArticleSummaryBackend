@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Entities
 {
+    [Index(nameof(Username), IsUnique = true)]
     public class UserEntity
     {
         [Key]
