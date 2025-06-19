@@ -40,6 +40,17 @@ namespace API.Helper
             };
         }
 
+        public static Article ToArticleModelFull(ArticleResponseDTO articleResponseDTO)
+        {
+            return new Article
+            {
+                Id = articleResponseDTO.Id,
+                Title = articleResponseDTO.Title,
+                Summary = articleResponseDTO.Summary,
+                Source = new Source { Content = articleResponseDTO.Content }
+            };
+        }
+
         public static Article ToArticleModel(CreateArticleRequestDTO createArticleRequestDTO)
         {
             return new Article

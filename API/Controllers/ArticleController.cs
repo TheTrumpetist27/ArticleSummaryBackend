@@ -56,5 +56,15 @@ namespace API.Controllers
             }
             return NoContent();
         }
+
+        [Authorize]
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<ArticleResponseDTO>> UpdateArticle(int id, [FromBody] ArticleResponseDTO dto)
+        {
+            if (id != dto.Id) return BadRequest("ID mismatch");
+
+            var updated = await _articleService.UpdateArticleAsync(ToArticleModelFull(dto));
+            return Ok(ToArticleResponseDTO(updated));
+        }
     }
 }

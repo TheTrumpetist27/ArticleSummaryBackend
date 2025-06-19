@@ -54,5 +54,18 @@ namespace DAL.Repositories
             _context.Articles.Remove(articleEntity);
             return await _context.SaveChangesAsync();
         }
+
+        public async Task<Article> UpdateArticleAsync(Article article)
+        {
+            var entity = await _context.Articles.FindAsync(article.Id);
+            if (entity == null)
+            {
+                throw new KeyNotFoundException($"Article with ID {article.Id} not found.");
+            }
+            entity = ToEntity(article);
+
+            await _context.SaveChangesAsync();
+            return ToModel(entity);
+        }
     }
 }

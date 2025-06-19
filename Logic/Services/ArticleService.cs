@@ -33,9 +33,9 @@ namespace Core.Services
         {
             return await _repository.DeleteArticle(id);
         }
-        //public async Task<int> UpdateArticle(Article article)
-        //{
-        //    return await _repository.UpdateArticle(article);
-        //}
+        public async Task<Article> UpdateArticleAsync(Article article)
+        {
+            return await _repository.UpdateArticleAsync(article);
+        }
     }
 }

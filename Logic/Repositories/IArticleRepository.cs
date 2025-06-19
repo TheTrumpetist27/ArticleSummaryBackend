@@ -7,7 +7,7 @@ namespace Core.Repositories
         Task<IEnumerable<Article>> GetAllArticles();
         Task<Article> GetArticleById(int id);
         Task<Article> CreateArticleAsync(Article article);
-        //Task<int> UpdateArticle(Article article);
+        Task<Article> UpdateArticleAsync(Article article);
         Task<int> DeleteArticle(int id);
     }
 }
